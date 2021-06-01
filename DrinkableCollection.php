@@ -42,6 +42,7 @@ function boot()
 {
 	new Cup();
 	new Bottle();
+	new Glass();
 }
 boot();
 
