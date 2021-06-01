@@ -1,9 +1,6 @@
 <?php
 
-<?php
-
 # Вопрос 1. Что выведет на экран код ниже
-use Predis\ClientInterface;
 
 echo (int)10 + (int)"20e" + (int)"e30" + (int)040 + (int)"1 20" + (int)1.99;
 
