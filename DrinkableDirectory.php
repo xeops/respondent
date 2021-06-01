@@ -4,15 +4,15 @@ interface IDrinkable
 {
 }
 
-class DrinkableFactory
+class DrinkableDirectory
 {
-	private static ?DrinkableFactory $instance = null;
+	private static ?DrinkableDirectory $instance = null;
 
 	private function __constructor()
 	{
 
 	}
-	public static function getInstance() : DrinkableFactory
+	public static function getInstance() : DrinkableDirectory
 	{
 		if(self::$instance === null)
 		{
@@ -28,7 +28,7 @@ abstract class BaseDrinkable
 {
 	public function __construct()
 	{
-		array_push(DrinkableFactory::getInstance()->collection, $this);
+		array_push(DrinkableDirectory::getInstance()->collection, $this);
 	}
 }
 
@@ -46,7 +46,7 @@ class Glass extends BaseDrinkable
 
 function display()
 {
-	foreach (DrinkableFactory::getInstance()->collection as $item)
+	foreach (DrinkableDirectory::getInstance()->collection as $item)
 	{
 		echo get_class($item) . PHP_EOL;
 	}
