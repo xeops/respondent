@@ -35,4 +35,15 @@ function display()
 		echo get_class($item) . PHP_EOL;
 	}
 }
+/**
+READ ONLY. Код не менять!
+*/
+function boot()
+{
+	new Cup();
+	new Bottle();
+}
+boot();
+
+
 display();
