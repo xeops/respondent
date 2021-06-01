@@ -60,7 +60,7 @@ $instanceSecond = clone $instance;
 $instanceSecond->a = 3;
 $instanceSecond->list->setSize($instanceSecond->a);
 
-//echo $instance->a + $instance->list->getSize();
+echo $instance->a + $instance->list->getSize();
 echo PHP_EOL;
 echo $instanceSecond->a + $instanceSecond->list->getSize();
 
