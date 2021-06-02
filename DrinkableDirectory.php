@@ -24,7 +24,7 @@ class DrinkableDirectory
 	public array $collection = [];
 }
 
-abstract class BaseDrinkable
+abstract class BaseDrinkable implements  interface
 {
 	public function __construct()
 	{
