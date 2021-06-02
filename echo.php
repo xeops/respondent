@@ -38,7 +38,7 @@ class Single
 
 	private function __construct()
 	{
-		$this->list = SplFixedArray::fromArray(range(0, $this->a));
+		$this->list = SplFixedArray::fromArray([0]);
 	}
 
 	public static function getInstance(): Single
