@@ -53,7 +53,7 @@ class Single
 
 $instance = Single::getInstance();
 
-$instanceSecond = clone $instance;
+$instanceSecond = clone Single::getInstance();
 $instanceSecond->a = 3;
 $instanceSecond->list->setSize($instanceSecond->a);
 
