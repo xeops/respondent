@@ -51,15 +51,16 @@ class Single
 	}
 }
 
+$instanceCloned = clone Single::getInstance();
+$instanceCloned->a = 3;
+$instanceCloned->list->setSize($instanceCloned->a);
+
+
 $instance = Single::getInstance();
-
-$instanceSecond = clone Single::getInstance();
-$instanceSecond->a = 3;
-$instanceSecond->list->setSize($instanceSecond->a);
-
 echo $instance->a + $instance->list->getSize();
 echo PHP_EOL;
-echo $instanceSecond->a + $instanceSecond->list->getSize();
+echo $instanceCloned->a + $instanceCloned->list->getSize();
+
 
 
 # Вопрос 4. Какая функция по поиску нечетных чисел займет МЕНЬШЕ всего места в памяти?
