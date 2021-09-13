@@ -1,6 +1,6 @@
 <?php
 
-Interface IDrinkable{}
+interface IDrinkable{}
 
 class Cup implements IDrinkable
 {
