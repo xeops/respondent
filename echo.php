@@ -123,35 +123,3 @@ function odd_object_four(object $obj): array
 	}
 	return $obj->array;
 }
-
-# Вопрос 5. Дана команда. Необходимо обеспечить механизм контроля, который
-# не позволит запустить более 1 команды за раз.
-
-class UpdateCommand extends \Symfony\Component\Console\Command\Command
-{
-
-	/** @var \Predis\Client */
-	private ClientInterface $redis;
-
-	public function start()
-	{
-		#$lock = $this->redis->set($this->getLockKey(), 1);
-		#$lock = $this->redis->set($this->getLockKey(), 1, 'EX', 60, 'NX');
-		#$lock =  $this->redis->set($this->getLockKey(), 1, 'EX', 60, 'XX');
-
-		if (!$lock)
-		{
-			return 0;
-		}
-	}
-
-	public function end()
-	{
-		$this->redis->del([$this->getLockKey()]);
-	}
-
-	protected function getLockKey(): string
-	{
-		return sprintf("LOCK:%s", $this->getName());
-	}
-}
