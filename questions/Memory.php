@@ -1,110 +1,62 @@
 <?php
 
-class Product
+# Вопрос. Какая функция по поиску нечетных чисел займет МЕНЬШЕ всего места в памяти?
+## Вызов функций - echo count(odd_*($ARRAY))
+## Замер памяти -  echo 'Peak usage: ' . round(memory_get_peak_usage() / 1024) . 'KB of memory ' . PHP_EOL . PHP_EOL;
+$ARRAY = range(0, 10000);
+#1.
+function odd_one(array $array): array
 {
-	private int $amount;
-	private string $name;
-
-	public function __construct($name, $amount)
+	$result = [];
+	foreach ($array as $digit)
 	{
-		$this->amount = (int)$amount;
-		$this->name = (int)$name;
+		if ($digit % 2 !== 0)
+		{
+			$result[] = $digit;
+		}
 	}
-
-	public function getAmount(): int
-	{
-		return $this->amount;
-	}
-
-	public function getName()
-	{
-		return $this->name;
-	}
+	return $result;
 }
 
-class Collection
+function odd_two(array $array): array
 {
-	public function __clone()
+	foreach ($array as $key => $digit)
 	{
-		foreach ($this->products as $index => $product)
+		if ($digit % 2 === 0)
 		{
-			$this->products[$index] = clone $product;
-		}
-
-	}
-
-	private array $products = [];
-
-	public function __construct()
-	{
-		$this->initialize();
-	}
-
-	private function initialize()
-	{
-		for ($i = 0; $i < 10_000; $i++)
-		{
-			array_push($this->products, new Product("Banana", $i));
-			array_push($this->products, new Product("Coffee", $i));
-			array_push($this->products, new Product("Water", $i));
+			unset($array[$key]);
 		}
 	}
-
-	public function getProducts(): array
-	{
-		return $this->products;
-	}
+	return $array;
 }
 
-class CollectionFilter
+function odd_three(array &$array): array
 {
-	public static function getBanana(array $products)
+	foreach ($array as $key => $digit)
 	{
-		$result = [];
-		foreach ($products as $product)
+		if ($digit % 2 === 0)
 		{
-			/** @var Product $product */
-			if ($product->getName() === 'Banana')
-			{
-				$result[] = $product;
-			}
+			unset($array[$key]);
 		}
-		return $result;
 	}
-
-	public static function getCoffee(array $products)
-	{
-		unset($products[0]);
-		foreach ($products as $key => $product)
-		{
-			/** @var Product $product */
-			if ($product->getName() !== 'Coffee')
-			{
-				unset($products[$key]);
-			}
-		}
-		return $products;
-	}
-
-	public static function getWater(array &$products)
-	{
-		foreach ($products as $key => $product)
-		{
-			/** @var Product $product */
-			if ($product->getName() !== 'Water')
-			{
-				unset($products[$key]);
-			}
-		}
-		return $products;
-	}
+	return $array;
 }
-$collection = new Collection;
-echo 'Peak usage: ' . round(memory_get_usage() / 1024) . 'KB of memory ' . PHP_EOL . PHP_EOL;
-$products = $collection->getProducts();
 
-#assert(CollectionFilter::getBanana($products), 10_000);
-assert(CollectionFilter::getCoffee($products), 10_000);
-#assert(CollectionFilter::getWater($products), 10_000);
-
-echo 'Peak usage: ' . round(memory_get_peak_usage() / 1024) . 'KB of memory ' . PHP_EOL . PHP_EOL;
+/**
+ * Данная функция вызывается как
+ * $obj = new stdClass;
+ * $obj->array = $ARRAY;
+ * @param object $obj
+ * @return array
+ */
+function odd_object_four(object $obj): array
+{
+	foreach ($obj->array as $key => $digit)
+	{
+		if ($digit % 2 === 0)
+		{
+			unset($obj->array[$key]);
+		}
+	}
+	return $obj->array;
+}
