@@ -30,6 +30,7 @@ array_push($products, new Product('water', 10.99));
 
 echo array_sum(array_map(fn(Product $item) => $item->getAmount(), $products));
 
+# Следующий вопрос https://github.com/xeops/respondent/blob/develop/questions/Single.php
 
 
 
