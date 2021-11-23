@@ -8,7 +8,7 @@ class Product
 	public function __construct($name, $amount)
 	{
 		$this->amount = (int)$amount;
-		$this->name = (int)$name;
+		$this->name = (string)$name;
 	}
 
 	public function getAmount(): int
